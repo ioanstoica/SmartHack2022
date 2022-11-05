@@ -1,3 +1,16 @@
+1. Despre noi
 Team CrackIT
 Hackatlon SmartHack 2022 https://smarthack.asmi.ro/
-Ez win sdffsdfsf
+
+2. Build
+ - npm init
+ - npm install --save-dev hardhat
+ - npx hardhat
+ - npm install dotenv --save
+ - npm install --save-dev @nomiclabs/hardhat-ethers "ethers@^5.0.0"
+ - npx hardhat compile
+ - npx hardhat run scripts/deploy.js --network goerli
+
+
+
+

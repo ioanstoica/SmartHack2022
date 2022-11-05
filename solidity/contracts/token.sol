@@ -1,5 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0
 pragma solidity >=0.7.3;
-contract HelloWorld{
+
+contract token{
 
     event Transfer(address indexed from, address indexed to, uint tokens);
     event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
