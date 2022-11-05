@@ -1,31 +1,59 @@
-// Specifies the version of Solidity, using semantic versioning.
-// Learn more: https://solidity.readthedocs.io/en/v0.5.10/layout-of-source-files.html#pragma
 pragma solidity >=0.7.3;
 
-// Defines a contract named `HelloWorld`.
-// A contract is a collection of functions and data (its state). Once deployed, a contract resides at a specific address on the Ethereum blockchain. Learn more: https://solidity.readthedocs.io/en/v0.5.10/structure-of-a-contract.html
 contract HelloWorld {
 
-   //Emitted when update function is called
-   //Smart contract events are a way for your contract to communicate that something happened on the blockchain to your app front-end, which can be 'listening' for certain events and take action when they happen.
-   event UpdatedMessages(string oldStr, string newStr);
+    event Transfer(address indexed from, address indexed to, uint tokens);
+    event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
 
-   // Declares a state variable `message` of type `string`.
-   // State variables are variables whose values are permanently stored in contract storage. The keyword `public` makes variables accessible from outside a contract and creates a function that other contracts or clients can call to access the value.
-   string public message;
+    string public constant name = "Muie Coin";
+    string public constant symbol = "MC";
+    uint8 public constant decimals = 18;
 
-   // Similar to many class-based object-oriented languages, a constructor is a special function that is only executed upon contract creation.
-   // Constructors are used to initialize the contract's data. Learn more:https://solidity.readthedocs.io/en/v0.5.10/contracts.html#constructors
-   constructor(string memory initMessage) {
+    mapping(address => uint256) balances;
 
-      // Accepts a string argument `initMessage` and sets the value into the contract's `message` storage variable).
-      message = initMessage;
-   }
+    mapping(address => mapping (address => uint256)) allowed;
 
-   // A public function that accepts a string argument and updates the `message` storage variable.
-   function update(string memory newMessage) public {
-      string memory oldMsg = message;
-      message = newMessage;
-      emit UpdatedMessages(oldMsg, newMessage);
-   }
+    uint256 totalSupply_;
+
+    constructor(uint256 total) {
+      totalSupply_ = total;
+      balances[msg.sender] = totalSupply_;
+    }
+
+    function totalSupply() public view returns (uint256) {
+      return totalSupply_;
+    }
+
+    function balanceOf(address tokenOwner) public view returns (uint) {
+        return balances[tokenOwner];
+    }
+
+    function transfer(address receiver, uint numTokens) public returns (bool) {
+        require(numTokens <= balances[msg.sender]);
+        balances[msg.sender] -= numTokens;
+        balances[receiver] += numTokens;
+        emit Transfer(msg.sender, receiver, numTokens);
+        return true;
+    }
+
+    function approve(address delegate, uint numTokens) public returns (bool) {
+        allowed[msg.sender][delegate] = numTokens;
+        emit Approval(msg.sender, delegate, numTokens);
+        return true;
+    }
+
+    function allowance(address owner, address delegate) public view returns (uint) {
+        return allowed[owner][delegate];
+    }
+
+    function transferFrom(address owner, address buyer, uint numTokens) public returns (bool) {
+        require(numTokens <= balances[owner]);
+        require(numTokens <= allowed[owner][msg.sender]);
+
+        balances[owner] -= numTokens;
+        allowed[owner][msg.sender] -= numTokens;
+        balances[buyer] += numTokens;
+        emit Transfer(owner, buyer, numTokens);
+        return true;
+    }
 }
