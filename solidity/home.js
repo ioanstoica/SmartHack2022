@@ -34,29 +34,24 @@ app.post("/form", function(req, res){
         }
 
         if(!eroare){
-            console.log("e bine")
-            async function main(supply, tokenName, symbol, decimals) {
-                console.log("part1")
-                await createToken(supply, tokenName, symbol, decimals)
-              }
-              
-              main(parseInt(campuriText.supply), campuriText.nume, campuriText.simbol, parseInt(campuriText.decimals))
-               .then(() => process.exit(0))
-               .catch(error => {
-                 console.error(error);
-                 //process.exit(1);
-               });
-              
-              async function createToken(supply, tokenName, symbol, decimals)
-              {
-              const HelloWorld = await ethers.getContractFactory("token");
-              console.log("part2")
-              
-              // Start deployment, returning a promise that resolves to a contract object
-              const hello_world = await HelloWorld.deploy(supply, tokenName, symbol, decimals);
-              console.log("Contract deployed to address:", hello_world.address);
-              }
-            res.render(__dirname + "/pages/form.ejs", {raspuns: "Moneda a fost creata."});
+            async function createToken(supply, tokenName, symbol, decimals){
+                const HelloWorld = await ethers.getContractFactory("token");
+                console.log("part2")
+                
+                // Start deployment, returning a promise that resolves to a contract object
+                const hello_world = await HelloWorld.deploy(supply, tokenName, symbol, decimals);
+                console.log("Contract deployed to address:", hello_world.address); 
+                res.render(__dirname + "/pages/form.ejs", {raspuns: "Moneda " + hello_world.address+  " a fost creata. Verifica moneda pe https://goerli.etherscan.io/address/" + hello_world.address + " poate dura cam 2 minute pana apare pe etherscan."});
+            } 
+
+            createToken(
+                parseInt(campuriText.supply), 
+                campuriText.nume, 
+                campuriText.simbol, 
+                parseInt(campuriText.decimals))
+            // .then (() =>  res.render(__dirname + "/pages/form.ejs", {raspuns: "Moneda a fost creata."}))
+            .catch(error => {console.error(error);});
+
         }
         else{
             res.render(__dirname + "/pages/form.ejs", {err: "Eroare: " + eroare}); 
