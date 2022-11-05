@@ -20,7 +20,8 @@ PRIVATE_KEY = ""
 
  - cd solidity
  - npm install
- - npx hardhat run scripts/deploy.js --network goerli
+ - npx hardhat compile
+ - node .
 
 
 
