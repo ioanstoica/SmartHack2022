@@ -1,4 +1,5 @@
 async function main(supply, tokenName, symbol, decimals) {
+  console.log("part1")
   await createToken(supply, tokenName, symbol, decimals)
 }
 
@@ -12,7 +13,7 @@ main(supply, tokenName, symbol, decimals)
 async function createToken(supply, tokenName, symbol, decimals)
 {
 const HelloWorld = await ethers.getContractFactory("token");
-// console.log("part1")
+console.log("part2")
 
 // Start deployment, returning a promise that resolves to a contract object
 const hello_world = await HelloWorld.deploy(supply, tokenName, symbol, decimals);

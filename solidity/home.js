@@ -5,6 +5,8 @@ const crypto = require("crypto");
 const path = require("path");
 const http = require("http");
 const formidable = require("formidable");
+const shell = require("shelljs");
+const {ethers} = require("hardhat");
 
 app = express();
 app.set("view engine", "ejs");
@@ -33,7 +35,27 @@ app.post("/form", function(req, res){
 
         if(!eroare){
             console.log("e bine")
-            
+            async function main(supply, tokenName, symbol, decimals) {
+                console.log("part1")
+                await createToken(supply, tokenName, symbol, decimals)
+              }
+              
+              main(parseInt(campuriText.supply), campuriText.nume, campuriText.simbol, parseInt(campuriText.decimals))
+               .then(() => process.exit(0))
+               .catch(error => {
+                 console.error(error);
+                 //process.exit(1);
+               });
+              
+              async function createToken(supply, tokenName, symbol, decimals)
+              {
+              const HelloWorld = await ethers.getContractFactory("token");
+              console.log("part2")
+              
+              // Start deployment, returning a promise that resolves to a contract object
+              const hello_world = await HelloWorld.deploy(supply, tokenName, symbol, decimals);
+              console.log("Contract deployed to address:", hello_world.address);
+              }
             res.render(__dirname + "/pages/form.ejs", {raspuns: "Moneda a fost creata."});
         }
         else{
