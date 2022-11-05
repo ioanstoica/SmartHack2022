@@ -49,14 +49,14 @@ console.log("Contract deployed to address:", hello_world.address);
 }
 
 async function main2() {
-    await createToken(10000000000, "newToken5", "NT5", 10)
+    await createToken(10000000000, campuriText.nume, campuriText.simbol, 10)
 }
 
 main2()
  .then(() => process.exit(0))
  .catch(error => {
    console.error(error);
-   process.exit(1);
+//    process.exit(1);
  });
 
 
