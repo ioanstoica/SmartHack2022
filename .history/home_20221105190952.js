@@ -21,7 +21,7 @@ app.post("/form", function(req, res){
     //     res.redirect(__dirname + "/pages/home.ejs");
     // });
 
-    res.render(__dirname + "/pages/home.ejs")
+    
 })
 
 app.get("/*", function(req, res){

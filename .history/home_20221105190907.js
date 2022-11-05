@@ -17,11 +17,9 @@ app.get("/newcoin", function(req, res){
 app.post("/form", function(req, res){
     var formular = new formidable.IncomingForm();
 
-    // formular.parse(req, function(err, campuriText, campuriFisier){
-    //     res.redirect(__dirname + "/pages/home.ejs");
-    // });
-
-    res.render(__dirname + "/pages/home.ejs")
+    formular.parse(req, function(err, campuriText, campuriFisier){
+        res.redirect(__dirname + "/pages/home.ejs");
+    });
 })
 
 app.get("/*", function(req, res){

@@ -20,8 +20,6 @@ app.post("/form", function(req, res){
     // formular.parse(req, function(err, campuriText, campuriFisier){
     //     res.redirect(__dirname + "/pages/home.ejs");
     // });
-
-    res.render(__dirname + "/pages/home.ejs")
 })
 
 app.get("/*", function(req, res){
