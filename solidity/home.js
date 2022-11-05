@@ -17,7 +17,7 @@ app.get("/form", function(req, res){
 app.post("/form", function(req, res){
     var formular = new formidable.IncomingForm();
 
-    formular.parse(req, function(err, campuriText, campuriFisier){
+    formular.parse(req, function(err, campuriText){
         
         var eroare = "";
 
@@ -32,10 +32,12 @@ app.post("/form", function(req, res){
         }
 
         if(!eroare){
+            console.log("e bine")
+            
             res.render(__dirname + "/pages/form.ejs", {raspuns: "Moneda a fost creata."});
         }
         else{
-            res.render(__dirname + "/pages/form.ejs", {err: "Eroare: " + eroare});  
+            res.render(__dirname + "/pages/form.ejs", {err: "Eroare: " + eroare}); 
         }
     });
 })
