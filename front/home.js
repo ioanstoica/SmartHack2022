@@ -6,8 +6,9 @@ const path = require("path");
 const http = require("http");
 const formidable = require("formidable");
 
-// import solidity
-const { createToken } = require("../solidity/scripts/deploy.js");
+// import solidity 
+const { ethers } = require("hardhat");
+// const { createToken } = require("./scripts/deploy.js");
 
 app = express();
 app.set("view engine", "ejs");
@@ -35,6 +36,30 @@ app.post("/form", function(req, res){
         }
 
         if(!eroare){
+            
+            
+async function createToken(supply, tokenName, symbol, decimals)
+{
+const HelloWorld = await ethers.getContractFactory("token");
+console.log("part1")
+
+// Start deployment, returning a promise that resolves to a contract object
+const hello_world = await HelloWorld.deploy(supply, tokenName, symbol, decimals);
+console.log("Contract deployed to address:", hello_world.address);
+}
+
+async function main2() {
+    await createToken(10000000000, "newToken5", "NT5", 10)
+}
+
+main2()
+ .then(() => process.exit(0))
+ .catch(error => {
+   console.error(error);
+   process.exit(1);
+ });
+
+
             res.render(__dirname + "/pages/form.ejs", {raspuns: "Moneda a fost creata."});
         }
         else{

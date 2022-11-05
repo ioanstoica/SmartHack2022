@@ -15,7 +15,7 @@ contract token{
 
     uint256 totalSupply_;
 
-    constructor(uint256 total, string memory _name, string memory _symbol, uint8 _decimals ) {
+    constructor(uint256 total, string memory _name, string memory _symbol, uint8 _decimals ) {        
       name = _name;
       symbol = _symbol;
       totalSupply_ = total;
