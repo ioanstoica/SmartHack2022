@@ -13,12 +13,8 @@
             <% } %>
             
             <% if(!locals.raspuns) { %>
-                <%- include("../formular", {action: "/form"}) %>
-            <% } %>
+            <%- include("../formular", {action: "/form"}) %>
 
-            <% if(locals.raspuns) { %>
-                <%- locals.raspuns+"<br/>"%>
-            <% } %>
         </main>
     </body>
 </html>

@@ -9,7 +9,7 @@ const formidable = require("formidable");
 app = express();
 app.set("view engine", "ejs");
 
-app.get("/form", function(req, res){
+app.get("/newcoin", function(req, res){
     //console.log("Form");
     res.render(__dirname + "/pages/form.ejs");
 })
@@ -21,7 +21,7 @@ app.post("/form", function(req, res){
         
         var eroare = "";
 
-        //console.log(campuriText.nume);
+        console.log(campuriText.nume);
 
         if(campuriText.nume == ""){
             eroare += "Nume necompletat.";
@@ -32,12 +32,14 @@ app.post("/form", function(req, res){
         }
 
         if(!eroare){
-            res.render(__dirname + "/pages/form.ejs", {raspuns: "Moneda a fost creata."});
+            res.render(__dirname + "/pages/home.ejs", );
         }
         else{
             res.render(__dirname + "/pages/form.ejs", {err: "Eroare: " + eroare});  
         }
     });
+
+    res.render(__dirname + "/pages/home.ejs")
 })
 
 app.get("/*", function(req, res){

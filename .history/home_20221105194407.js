@@ -9,7 +9,7 @@ const formidable = require("formidable");
 app = express();
 app.set("view engine", "ejs");
 
-app.get("/form", function(req, res){
+app.get("/newcoin", function(req, res){
     //console.log("Form");
     res.render(__dirname + "/pages/form.ejs");
 })
@@ -21,7 +21,7 @@ app.post("/form", function(req, res){
         
         var eroare = "";
 
-        //console.log(campuriText.nume);
+        console.log(campuriText.nume);
 
         if(campuriText.nume == ""){
             eroare += "Nume necompletat.";

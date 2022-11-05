@@ -8,17 +8,10 @@
     <body>
         <main>
             <p>Formular creare moneda</p>
-            <% if(locals.err) { %>
-                <%- locals.err %>
-            <% } %>
-            
-            <% if(!locals.raspuns) { %>
+            <% if(!locals.err) %>
                 <%- include("../formular", {action: "/form"}) %>
-            <% } %>
-
-            <% if(locals.raspuns) { %>
-                <%- locals.raspuns+"<br/>"%>
-            <% } %>
+            <% else %>
+                <p><%- locals.eroare%></p>
         </main>
     </body>
 </html>

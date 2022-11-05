@@ -9,7 +9,7 @@ const formidable = require("formidable");
 app = express();
 app.set("view engine", "ejs");
 
-app.get("/form", function(req, res){
+app.get("/newcoin", function(req, res){
     //console.log("Form");
     res.render(__dirname + "/pages/form.ejs");
 })
@@ -21,23 +21,21 @@ app.post("/form", function(req, res){
         
         var eroare = "";
 
-        //console.log(campuriText.nume);
-
-        if(campuriText.nume == ""){
+        if(campuriText.name == ""){
             eroare += "Nume necompletat.";
         }
-
-        if(!campuriText.nume.match(new RegExp("^[A-Za-z0-9]+$"))){
+        
+        if(!campuriText.name.match(new RegExp("^[A-Za-z0-9]+$"))){
             eroare += "Numele nu corespunde patternului.";
         }
 
-        if(!eroare){
-            res.render(__dirname + "/pages/form.ejs", {raspuns: "Moneda a fost creata."});
-        }
-        else{
-            res.render(__dirname + "/pages/form.ejs", {err: "Eroare: " + eroare});  
-        }
+        if(!eroare)
+            //res.redirect(__dirname + "/pages/home.ejs");
+        else
+            res.render("pagini/inregistrare", {err: "Eroare: " + eroare});  
     });
+
+    res.render(__dirname + "/pages/home.ejs")
 })
 
 app.get("/*", function(req, res){

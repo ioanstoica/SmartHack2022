@@ -21,7 +21,7 @@ app.post("/form", function(req, res){
         
         var eroare = "";
 
-        //console.log(campuriText.nume);
+        console.log(campuriText.nume);
 
         if(campuriText.nume == ""){
             eroare += "Nume necompletat.";
