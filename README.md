@@ -15,6 +15,9 @@ Hackatlon SmartHack 2022 https://smarthack.asmi.ro/
 3. Build
  
  Add .env file in solidity
+API_URL  = ""
+PRIVATE_KEY = ""
+
  - cd solidity
  - npm install
  - npx hardhat run scripts/deploy.js --network goerli
