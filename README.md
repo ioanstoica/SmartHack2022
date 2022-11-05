@@ -8,6 +8,7 @@ Hackatlon SmartHack 2022 https://smarthack.asmi.ro/
  - npx hardhat
  - npm install dotenv --save
  - npm install --save-dev @nomiclabs/hardhat-ethers "ethers@^5.0.0"
+ - npm install dotenv
  - npx hardhat compile
  - npx hardhat run scripts/deploy.js --network goerli
 
