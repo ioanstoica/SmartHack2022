@@ -6,6 +6,9 @@ const path = require("path");
 const http = require("http");
 const formidable = require("formidable");
 
+// import solidity
+const { createToken } = require("../solidity/scripts/deploy.js");
+
 app = express();
 app.set("view engine", "ejs");
 

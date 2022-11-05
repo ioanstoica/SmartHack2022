@@ -1,5 +1,5 @@
 async function main() {
-  await createToken(10000000000, "newToken4", "NT4", 10)
+  await createToken(10000000000, "newToken5", "NT5", 10)
 }
 
 main()
