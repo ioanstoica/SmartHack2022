@@ -1,22 +1,23 @@
 pragma solidity >=0.7.3;
-
-contract HelloWorld {
+contract HelloWorld{
 
     event Transfer(address indexed from, address indexed to, uint tokens);
     event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
 
-    string public constant name = "Muie Coin";
-    string public constant symbol = "MC";
-    uint8 public constant decimals = 18;
+    string public name = "TestCoin3";
+    string public symbol = "TC3";
+    uint8 public decimals = 18;
 
     mapping(address => uint256) balances;
-
     mapping(address => mapping (address => uint256)) allowed;
 
     uint256 totalSupply_;
 
-    constructor(uint256 total) {
+    constructor(uint256 total, string memory _name, string memory _symbol, uint8 _decimals ) {
+      name = _name;
+      symbol = _symbol;
       totalSupply_ = total;
+      decimals = _decimals;
       balances[msg.sender] = totalSupply_;
     }
 

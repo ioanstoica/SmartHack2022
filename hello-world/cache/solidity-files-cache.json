@@ -37,8 +37,8 @@
       ]
     },
     "C:\\Users\\dumit\\OneDrive\\Desktop\\Crypto\\SmartHack2022\\hello-world\\contracts\\HelloWorld.sol": {
-      "lastModificationDate": 1667663228809,
-      "contentHash": "31e3bcf9ef4dbd364ed1ae362d0c5cef",
+      "lastModificationDate": 1667675134207,
+      "contentHash": "0e6f7520a708513fbe1bd7c88ad8720c",
       "sourceName": "contracts/HelloWorld.sol",
       "solcConfig": {
         "version": "0.7.3",
