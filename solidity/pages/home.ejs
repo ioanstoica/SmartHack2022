@@ -5,25 +5,53 @@
         <meta name="keywords" content="CrackIT">
         <title>CrackIT</title>
         <script type="text/javascript" src="../scripts/deploy.js"></script>
+        <script type="text/javascript" src="../scripts/connect.js"></script>
     </head>
     <body>
         <main>
             <p>Home Page</p>   
             <button id="connect-button">Connect Metamask</button>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity=
+        "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+        crossorigin="anonymous">
+    </script>
             <script>
+                $(document).ready(function () {
+                    $("#connect-button").click(function () {
+                        $.post("/form",
+                            {
+                                
+                            }
+                        )
+                    })
+                })
                 document.getElementById("connect-button").addEventListener("click", event => {
-                    let account;
-                    let button = event.target;
+                    var button = event.target;
                     ethereum.request({method: "eth_requestAccounts"}).then(accounts => {
                         account = accounts[0];
                         console.log(account);
+                        localStorage.setItem("account", account);
                         button.textContent = account;
                         ethereum.request({method: "eth_getBalance", params: [account, "latest"]}).then(result => {
                             console.log(result);
                         })
                     })
                 })
-            </script>     
+            </script>   
+            <script>
+                        window.addEventListener("load", event => {
+                        ethereum.request({ method: 'eth_accounts' })
+                        .then((accounts) => {
+                            console.log(`Accounts:\n${accounts.join('\n')}`);
+                        })
+                        .catch((error) => {
+                            console.error(
+                            `Error fetching accounts: ${error.message}.
+                            Code: ${error.code}. Data: ${error.data}`
+                            );
+                        })});
+            </script>  
         </main>
     </body>
 </html>
