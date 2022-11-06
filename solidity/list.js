@@ -1,76 +1,4 @@
-const express = require("express");
-const fs = require("fs");
-const ejs = require("ejs");
-const crypto = require("crypto");
-const path = require("path");
-const http = require("http");
-const formidable = require("formidable");
-const shell = require("shelljs");
-const {ethers} = require("hardhat");
-// const ethers2 = require("ethers")
-const Address = require("cluster")
-const metamask = require("@metamask/detect-provider");
-const cookieParser = require("cookie-parser")
-const cors = require("cors") 
-const bodyParser = require("body-parser")
-const Web3 = require("web3");
-const gorli = '0x6Ce570d02D73d4c384b46135E87f8C592A8c86dA'
-const web3 = new Web3();
-const Pool = require("@uniswap/v3-sdk")
-const Token = require("@uniswap/sdk-core")
-const abi = require("@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json")
-const provider = new ethers.getDefaultProvider("goerli", "ebf2e918d9e94094ba8f2a73f82174ee");
-const poolAddress = "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6";
-
-const poolContract = new ethers.Contract(poolAddress, abi, provider);
-const poolImmutablesAbi = [
-    'function factory() external view returns (address)',
-    'function token0() external view returns (address)',
-    'function token1() external view returns (address)',
-    'function fee() external view returns (uint24)',
-    'function tickSpacing() external view returns (int24)',
-    'function maxLiquidityPerTick() external view returns (uint128)',
-  ]
-
-app = express();
-app.set("view engine", "ejs");
-app.use(cookieParser());
-app.use(cors())
-app.use(bodyParser.urlencoded({extended:false}))
-app.use(bodyParser.json())
-
-app.post("/create_token/:address", function(req, res) {
-    nume = req.body.nume;
-    simbol = req.body.simbol;
-    supply = req.body.supply
-    decimals = req.body.decimals
-    address = req.params.address
-    createToken(BigInt(supply), nume, simbol, BigInt(decimals))
-       .catch(error => {
-         console.error(error);
-       });
-       var address_, supply_, tokenName_, symbol_, decimals_;
-    async function createToken(supply, tokenName, symbol, decimals)
-    {
-      const myToken = await ethers.getContractFactory("token"); 
-      // Start deployment, returning a promise that resolves to a contract object
-      const my_token = await myToken.deploy(supply, tokenName, symbol, decimals);
-      console.log("Contract deployed to address:", my_token.address);
-      await my_token.transfer(address, supply)
-      console.log("sent to " + address)
-    address_ = address;
-    supply_ = supply;
-    tokenName_ = tokenName;
-    symbol_ = symbol;
-    decimals_ = decimals;
-      res.send(my_token.address)
-  listToken(address_, tokenName_, symbol_, decimals_).catch(error => {
-    console.error(error);
-  });
-    }
-
-    async function listToken(address, tokenName, symbol, decimals) {
-        "use strict";
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -115,10 +43,7 @@ var Token = require("@uniswap/sdk-core");
 var abi = require("@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json");
 var provider = new ethers_1.ethers.providers.JsonRpcProvider("https://goerli.infura.io/v3/ebf2e918d9e94094ba8f2a73f82174ee");
 var poolAddress = "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6";
-var poolContract = new ethers.Contract(poolAddress, abi, provider);
-// console.log(provider.getCode(poolAddress))
-// console.log(provider.getCode(address))
-
+var poolContract = new ethers_1.ethers.Contract(poolAddress, abi, provider);
 function getPoolImmutables() {
     return __awaiter(this, void 0, void 0, function () {
         var _a, factory, token0, token1, fee, tickSpacing, maxLiquidityPerTick, immutables;
@@ -170,7 +95,7 @@ function getPoolState() {
         });
     });
 }
-async function main() {
+function main() {
     return __awaiter(this, void 0, void 0, function () {
         var _a, immutables, state, TokenA, TokenB, poolExample;
         return __generator(this, function (_b) {
@@ -178,9 +103,9 @@ async function main() {
                 case 0: return [4 /*yield*/, Promise.all([getPoolImmutables(), getPoolState()])];
                 case 1:
                     _a = _b.sent(), immutables = _a[0], state = _a[1];
-                    TokenA = new Token(address, immutables.token0, decimals, symbol, tokenName);
-                    TokenB = new Token(gorli, immutables.token1, 18, 'WETH', 'Wrapped Ether');
-                    poolExample = new Pool(TokenB, TokenA, immutables.fee, state.sqrtPriceX96.toString(), state.liquidity.toString(), state.tick);
+                    TokenA = new Token(3, immutables.token0, 6, 'USDC', 'USD Coin');
+                    TokenB = new Token(3, immutables.token1, 18, 'WETH', 'Wrapped Ether');
+                    poolExample = new Pool(TokenA, TokenB, immutables.fee, state.sqrtPriceX96.toString(), state.liquidity.toString(), state.tick);
                     console.log(poolExample);
                     return [2 /*return*/];
             }
@@ -188,14 +113,3 @@ async function main() {
     });
 }
 main();
-
-    }
-});
-
-app.get("/*", function(req, res){
-    res.render(__dirname + "/pages/home.ejs");
-});
-
-app.listen(7545, function(){
-   console.log("Server started listening localhost: " + 7545); 
-});
