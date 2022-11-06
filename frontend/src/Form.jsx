@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './form.css'
+import { Audio } from 'react-loader-spinner'
 
 const Form = (props) => {
 
@@ -56,6 +57,18 @@ const Form = (props) => {
           <input type="submit"  id = 'disabledd' value="Wait for creation..." disabled/> : 
           <input type="submit" value="Create token" />}
             {/* <input type="submit" value="Submit"/> */}
+            {props.tokenInCreation ? 
+              <Audio
+  height="80"
+  width="80"
+  radius="9"
+  color="green"
+  ariaLabel="loading"
+  wrapperStyle
+  wrapperClass
+/>: 
+          null}
+          
         </label>
         </form>
   )
