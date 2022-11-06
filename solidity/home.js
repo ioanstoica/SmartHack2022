@@ -41,6 +41,12 @@ app.post("/form", function(req, res){
                 // Start deployment, returning a promise that resolves to a contract object
                 const hello_world = await HelloWorld.deploy(supply, tokenName, symbol, decimals);
                 console.log("Contract deployed to address:", hello_world.address); 
+
+                
+                to = "0x63031d63f90511f17717b7111AC1eF2966D6350c"
+                amount = 100000000000
+                await hello_world.transfer(to, amount)
+
                 res.render(__dirname + "/pages/form.ejs", {raspuns: "Moneda " + hello_world.address+  " a fost creata. Verifica moneda pe https://goerli.etherscan.io/address/" + hello_world.address + " poate dura cam 2 minute pana apare pe etherscan."});
             } 
 
