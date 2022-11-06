@@ -6,17 +6,34 @@ import { useState } from 'react'
 import { useMetaMask } from "metamask-react";
 import Form from './Form'
 
+const NewForm = (props) => {
+  return (
+    <form className="form-container">
+        <div className='form-title gradient__text'>Your token is created:</div>
+        <label>New token address&#160;:&#160; {props.address}</label>
+        <a href = {"https://goerli.etherscan.io/address/" + props.address}> 
+          <label > Find the token on etherscan here! </label>  
+        </a> 
+        
+    </form>
+  )
+}
+
 const App = () => {
   const { status, connect, account, chainId, ethereum } = useMetaMask();
   const [editingForm, setEditingForm] = useState(false);
+  const [tokenCreated, setTokenCreated] = useState(false);
+  const [tokenInCreation, setTokenInCreation] = useState(false);
+  const [address, setAddress] = useState("");
 
   return (
     <div className='App'>
         <div className='gradient__bg'>
           <Navbar status = {status} connect = {connect}/>
           {editingForm ? 
-            <Form account = {account} setEditingForm = {setEditingForm}/>  
+            <Form setTokenInCreation = {setTokenInCreation} tokenInCreation = {tokenInCreation} setAddress = {setAddress} account = {account} setEditingForm = {setEditingForm} setTokenCreated={setTokenCreated}/>  
             : <Header account = {account} setEditingForm = {setEditingForm}/>}
+          {tokenCreated ? <NewForm account = {account} address = {address}/>  : null}
         </div>
         <What />
         <Footer />
