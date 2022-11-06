@@ -63,6 +63,12 @@ html {
     justify-content: center;
 }
 
+.form-container a{
+    /* link */
+    color: #fff;
+    text-decoration: underline;
+}
+
 .form-container label.submit input{
     background: #FF4820;
     border: 2px solid #FF4820;

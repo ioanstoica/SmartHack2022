@@ -11,9 +11,9 @@ const NewForm = (props) => {
     <form className="form-container">
         <div className='form-title gradient__text'>Your token is created:</div>
         <label>New token address&#160;:&#160; {props.address}</label>
-          <a href = {"https://goerli.etherscan.io/address/" + props.address}> 
-            <label > Find the token on etherscan here! &#160;:&#160;   </label>  
-          </a> 
+        <a href = {"https://goerli.etherscan.io/address/" + props.address}> 
+          <label > Find the token on etherscan here! &#160;:&#160;   </label>  
+        </a> 
         
     </form>
   )
