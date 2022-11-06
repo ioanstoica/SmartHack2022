@@ -10,7 +10,7 @@ const Header = (props) => {
         <p> Our easy-to-use crypto generator allows you to make your own custom token on the Ethereum blockchain without needing any programming experience.</p>
         <div className='ckmint__header-content-input'>
           <button type='button'onClick={() => {props.setEditingForm(true)}}>Get started</button>
-          <button type='button'>Learn more</button>
+          <button type='button'> <a href="https://ro.wikipedia.org/wiki/Ethereum"> Learn more</a></button>
         </div>
       </div>
       <div className='ckmint__header-image'>
