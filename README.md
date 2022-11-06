@@ -8,8 +8,8 @@ Hackatlon SmartHack 2022 https://smarthack.asmi.ro/
 3. Build
     3.1 Build backend
         Add .env file in solidity
-        API_URL  = ""
-        PRIVATE_KEY = ""
+        API_URL  = "" // from https://dashboard.alchemy.com/
+        PRIVATE_KEY = "" // from generator wallet
         $ cd solidity
         $ npm install
         $ npx hardhat compile
