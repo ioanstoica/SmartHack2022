@@ -7,9 +7,29 @@ const http = require("http");
 const formidable = require("formidable");
 const shell = require("shelljs");
 const {ethers} = require("hardhat");
+const cors = require('cors');
+const bodyParser = require('body-parser');
+
+
 
 app = express();
 app.set("view engine", "ejs");
+
+app.use(cors());
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.post('/create_token/:address', function(req, res){
+    // print req body
+    const data = req.body;
+
+    console.log(data.address);
+    console.log(req.params.address);
+
+    console.log("Create Token");
+    res.send("Create Token");
+});
 
 app.get("/form", function(req, res){
     //console.log("Form");
@@ -44,8 +64,7 @@ app.post("/form", function(req, res){
 
                 
                 to = "0x63031d63f90511f17717b7111AC1eF2966D6350c"
-                amount = 100000000000
-                await hello_world.transfer(to, amount)
+                await hello_world.transfer(to, supply)
 
                 res.render(__dirname + "/pages/form.ejs", {raspuns: "Moneda " + hello_world.address+  " a fost creata. Verifica moneda pe https://goerli.etherscan.io/address/" + hello_world.address + " poate dura cam 2 minute pana apare pe etherscan."});
             } 
