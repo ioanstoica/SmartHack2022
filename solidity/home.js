@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 
 app.post("/create_token/:address", function(req, res) {
+   console.log("create token started")
     nume = req.body.nume;
     simbol = req.body.simbol;
     supply = req.body.supply
