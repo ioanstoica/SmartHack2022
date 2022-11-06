@@ -8,7 +8,22 @@
     </head>
     <body>
         <main>
-            <p>Home Page</p>        
+            <p>Home Page</p>   
+            <button id="connect-button">Connect Metamask</button>
+            <script>
+                document.getElementById("connect-button").addEventListener("click", event => {
+                    let account;
+                    let button = event.target;
+                    ethereum.request({method: "eth_requestAccounts"}).then(accounts => {
+                        account = accounts[0];
+                        console.log(account);
+                        button.textContent = account;
+                        ethereum.request({method: "eth_getBalance", params: [account, "latest"]}).then(result => {
+                            console.log(result);
+                        })
+                    })
+                })
+            </script>     
         </main>
     </body>
 </html>

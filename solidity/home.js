@@ -7,9 +7,44 @@ const http = require("http");
 const formidable = require("formidable");
 const shell = require("shelljs");
 const {ethers} = require("hardhat");
+const ethers2 = require("ethers")
+const metamask = require("@metamask/detect-provider");
+
+// const provider = await detectEthereumProvider();
 
 app = express();
 app.set("view engine", "ejs");
+
+// detectEthereumProvider = metamask.detectEthereumProvider;
+
+// const provider = await detectEthereumProvider();
+// if (global.ethereum == "undefined") {
+//     console.log("Eroare");
+// }
+// else {
+//     const provider = new ethers.providers.Web3Provider(global.ethereum)
+// }   
+// if (provider) {
+//     // From now on, this should always be true:
+//     // provider === window.ethereum
+//     startApp(provider); // initialize your app
+//   } else {
+//     console.log('Please install MetaMask!');
+//   }
+
+// console.log(ethereum.isConnected());    
+
+// ethereum
+//   .request({ method: 'eth_accounts' })
+//   .then((accounts) => {
+//     console.log(`Accounts:\n${accounts.join('\n')}`);
+//   })
+//   .catch((error) => {
+//     console.error(
+//       `Error fetching accounts: ${error.message}.
+//        Code: ${error.code}. Data: ${error.data}`
+//     );
+//   });
 
 app.get("/form", function(req, res){
     //console.log("Form");
@@ -40,8 +75,7 @@ app.post("/form", function(req, res){
                 await createToken(supply, tokenName, symbol, decimals)
               }
               
-              main(parseInt(campuriText.supply), campuriText.nume, campuriText.simbol, parseInt(campuriText.decimals))
-               .then(() => process.exit(0))
+              main(BigInt(campuriText.supply), campuriText.nume, campuriText.simbol, BigInt(campuriText.decimals))
                .catch(error => {
                  console.error(error);
                  //process.exit(1);
@@ -68,6 +102,13 @@ app.get("/*", function(req, res){
     res.render(__dirname + "/pages/home.ejs");
 });
 
-app.listen(8080, function(){
-   console.log("Server started listening localhost: " + 8080); 
+
+
+app.listen(7545, function(){
+   console.log("Server started listening localhost: " + 7545); 
 });
+
+console.log(global.ethereum);
+if (typeof global.ethereum !== 'undefined') {
+    console.log('MetaMask is installed!');
+  }
