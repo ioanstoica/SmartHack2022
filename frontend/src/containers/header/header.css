@@ -1,0 +1,121 @@
+.ckmint__header {
+    display: flex;
+}
+
+.ckmint__header-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-right: 4rem;
+}
+
+.ckmint__header-content h1 {
+    font-family: var(--font-family);
+    font-weight: 800;
+    font-size: 62px;
+    line-height: 75px;
+    letter-spacing: -0.04em;
+}
+
+.ckmint__header-content p {
+    font-family: var(--font-family);
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 27px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    color: var(--color-text);
+}
+
+.ckmint__header-content-input {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+}
+
+.ckmint__header-content-input button {
+    flex-direction: row;
+    flex-shrink: 0.4;
+    width: 100%;
+    min-height: 50px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+    background: #FF4820;
+    border: 2px solid #FF4820;
+    padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+    margin: 1rem;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+}
+
+.ckmint__header-content-input button:first-of-type {
+    margin-right: 3rem;
+    margin-left: 0rem;
+}
+
+.ckmint__header-content-input button:nth-of-type(2) {
+    margin-right: 0rem;
+    margin-left: 3rem;
+}
+
+.ckmint__header-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ckmint__header-image img{
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width: 1050px) {
+    .ckmint__header {
+        flex-direction: column;
+    }
+
+    .ckmint__header-content {
+        margin: 0 0 3rem;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .ckmint__header-content h1 {
+        font-size: 48px;
+        line-height: 60px;
+    }
+
+    .ckmint__header-content p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .ckmint__header-content-input button {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    .ckmint__header-content h1 {
+        font-size: 36px;
+        line-height: 48px;
+    }
+
+    .ckmint__header-content p {
+        font-size: 14px;
+        line-height: 24px;
+    }
+
+    .ckmint__header-content__input button {
+        font-size: 12px;
+        line-height: 16px;
+    }
+}
