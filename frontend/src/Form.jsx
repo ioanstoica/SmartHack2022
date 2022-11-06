@@ -30,7 +30,8 @@ const Form = (props) => {
 
     fetch("http://localhost:7545/create_token/" + props.account, requestOptions)
       .then(response => response.text())
-      .then(result => console.log(result))
+      .then(result => props.setAddress(result))
+      .then(() => props.setTokenCreated(true))
       .catch(error => console.log('error', error));
   }
     
