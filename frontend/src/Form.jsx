@@ -53,7 +53,7 @@ const Form = (props) => {
         </label>
         <label className="submit">
         {props.tokenInCreation ? 
-          <input type="submit" value="Creating token..." disabled /> : 
+          <input type="submit"  id = 'disabledd' value="Wait for creation..." disabled/> : 
           <input type="submit" value="Create token" />}
             {/* <input type="submit" value="Submit"/> */}
         </label>

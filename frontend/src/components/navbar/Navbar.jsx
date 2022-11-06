@@ -9,7 +9,8 @@ const Menu = (props) => (
   <p><a href="#home">Home</a></p>
   <p><a href="#what">What is CryptoMint?</a></p>
   <p><a href="#faq">{props.status}</a></p>
-  <p><a href="#" onClick = {props.connect}>Connect to wallet</a></p>
+  {props.status === "connected" ?   null : <p><a href="#" onClick = {props.connect}>Connect to wallet</a></p>}
+  
   </>
 )
 

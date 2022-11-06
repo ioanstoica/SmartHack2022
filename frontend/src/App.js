@@ -12,7 +12,7 @@ const NewForm = (props) => {
         <div className='form-title gradient__text'>Your token is created:</div>
         <label>New token address&#160;:&#160; {props.address}</label>
         <a href = {"https://goerli.etherscan.io/address/" + props.address}> 
-          <label > Find the token on etherscan here! &#160;:&#160;   </label>  
+          <label > Find the token on etherscan here! </label>  
         </a> 
         
     </form>

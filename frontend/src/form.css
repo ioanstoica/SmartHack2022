@@ -3,6 +3,11 @@ html {
     /* padding: 4rem; */
 }
 
+.submit input .disabledd {
+    background-color: var(blue);
+    /* padding: 4rem; */
+}
+
 .form-title {
     color: #fff;
     display: flex;
