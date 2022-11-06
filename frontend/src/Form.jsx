@@ -10,6 +10,7 @@ const Form = (props) => {
 
   const handleSubmit = (event) => {
     // post to backend
+    props.setTokenInCreation(true);
     event.preventDefault();
     console.log(name, symbol, supply, decimals, props.address);
     var myHeaders = new Headers();
@@ -32,6 +33,7 @@ const Form = (props) => {
       .then(response => response.text())
       .then(result => props.setAddress(result))
       .then(() => props.setTokenCreated(true))
+      .then(() => props.setTokenInCreation(false))
       .catch(error => console.log('error', error));
   }
     
@@ -50,7 +52,10 @@ const Form = (props) => {
             <input type="text" onChange={(e) => setDecimals(e.target.value)} />
         </label>
         <label className="submit">
-            <input type="submit" value="Submit"/>
+        {props.tokenInCreation ? 
+          <input type="submit" value="Creating token..." disabled /> : 
+          <input type="submit" value="Create token" />}
+            {/* <input type="submit" value="Submit"/> */}
         </label>
         </form>
   )

@@ -23,6 +23,7 @@ const App = () => {
   const { status, connect, account, chainId, ethereum } = useMetaMask();
   const [editingForm, setEditingForm] = useState(false);
   const [tokenCreated, setTokenCreated] = useState(false);
+  const [tokenInCreation, setTokenInCreation] = useState(false);
   const [address, setAddress] = useState("");
 
   return (
@@ -30,7 +31,7 @@ const App = () => {
         <div className='gradient__bg'>
           <Navbar status = {status} connect = {connect}/>
           {editingForm ? 
-            <Form setAddress = {setAddress} account = {account} setEditingForm = {setEditingForm} setTokenCreated={setTokenCreated}/>  
+            <Form setTokenInCreation = {setTokenInCreation} tokenInCreation = {tokenInCreation} setAddress = {setAddress} account = {account} setEditingForm = {setEditingForm} setTokenCreated={setTokenCreated}/>  
             : <Header account = {account} setEditingForm = {setEditingForm}/>}
           {tokenCreated ? <NewForm account = {account} address = {address}/>  : null}
         </div>
