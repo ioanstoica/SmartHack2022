@@ -40,16 +40,16 @@ const Form = (props) => {
   return ( <form onSubmit={handleSubmit} className="form-container">
         <div className='form-title gradient__text'>Create token form</div>
         <label>Enter token name&#160;:&#160;
-            <input type="text" onChange={(e) => setName(e.target.value)} />
+            <input type="text" onChange={(e) => setName(e.target.value)} value = "Ethereum"/>
         </label>
         <label>Enter token symbol&#160;:&#160;
-            <input type="text" onChange={(e) => setSymbol(e.target.value)} />
+            <input type="text" onChange={(e) => setSymbol(e.target.value)} value = "ETH"/>
         </label>
         <label>Enter token supply&#160;:&#160;
-            <input type="text" onChange={(e) => setSupply(e.target.value)} />
+            <input type="text" onChange={(e) => setSupply(e.target.value)} value = "1000000000"/>
         </label>
         <label>Enter token decimals&#160;:&#160;
-            <input type="text" onChange={(e) => setDecimals(e.target.value)} />
+            <input type="text" onChange={(e) => setDecimals(e.target.value)} value = "18" />
         </label>
         <label className="submit">
         {props.tokenInCreation ? 
