@@ -9,7 +9,7 @@ Un scratch pentru solidity pentru automatizarea de smart contracts. Exemplul apl
 
 ### Build
 
-3.1 Build backend
+#### Build backend
 
 Add .env file in backend
 `API_URL`  = "" // from https://dashboard.alchemy.com/
@@ -22,7 +22,7 @@ Add .env file in backend
 
 
 
-3.2 Build frontend
+#### Build frontend
 
 	$ cd frontend
 	$ npm install
